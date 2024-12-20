@@ -1,26 +1,38 @@
 using Fleck;
+using lib;
+using System.Reflection;
+using WebSocket;
+
+
+var builder = WebApplication.CreateBuilder(args);
+
+var clientEventHandler = builder.FindAndInjectClientEventHandlers(Assembly.GetExecutingAssembly());
+
+var app = builder.Build();
 
 var server = new WebSocketServer(location: "ws://0.0.0.0:8181");
 
+
 server.Start(ws=>
 {
-
-    var wsConnections = new List<IWebSocketConnection>();
-
     ws.OnOpen = () =>
     {
-        wsConnections.Add(ws);
+        StateService.AddConnection(ws);
     };
-    ws.OnMessage = message =>
+    ws.OnMessage = async message =>
     {
-        foreach (var webSocketConnection in wsConnections)
+        try
         {
-            Console.WriteLine(message);
-            webSocketConnection.Send(message);
+           await app.InvokeClientEventHandler(clientEventHandler, ws, message);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+           Console.WriteLine(e.InnerException);
+            Console.WriteLine(e.StackTrace);
         }
 
     };
 
 });
-
-WebApplication.CreateBuilder(args).Build().Run();
+Console.ReadLine();
