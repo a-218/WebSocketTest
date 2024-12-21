@@ -1,24 +1,13 @@
-name: .NET 8 Tests CI
-
 on:
   push:
-  workflow_dispatch:
+  workflow_dispatch: 
 
 jobs:
   tests:
     runs-on: ubuntu-22.04
-    
     steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-        
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v7
-        with:
-          dotnet-version: '8.0.x'
-
-      - name: Verify .NET version
-        run: dotnet --version  # This step checks that the correct .NET version is installed
-
-      - name: Run tests
-        run: cd Test && dotnet test
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with: 
+          dotnet-version: 8.0.x
+      - run: cd Tests && dotnet test
