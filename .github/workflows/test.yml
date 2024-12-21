@@ -7,10 +7,10 @@ jobs:
     tests:
         runs-on: ubuntu-22.04
         steps:
-           - uses: actions/checkout@v8
+           - uses: actions/checkout@v3
            - name: Setup dotnet
-             uses: actions/setup-dotnet@8
+             uses: actions/setup-dotnet@7
              with:
-                dotnet-version : 8.0.x
+                dotnet-version : 8.x
            - run: cd Test && dotnet test
            
