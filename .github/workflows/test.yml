@@ -10,4 +10,4 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with: 
           dotnet-version: 8.0.x
-      - run: cd Tests && dotnet test
+      - run: cd Test && dotnet test
