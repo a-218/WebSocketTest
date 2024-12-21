@@ -1,6 +1,8 @@
 # WebSocketTest
 
-This project is a WebSocket server that I built by following a YouTube tutorial. The goal of the project was to learn how to create a WebSocket server in C#, test it using Postman, and automate testing with GitHub Actions.
+This project is a WebSocket server that I built by following a YouTube tutorial 
+(https://www.youtube.com/watch?v=G5b1Zd367sA&t=130s&ab_channel=Alex%27sDevDen%F0%9F%91%A8%E2%80%8D%F0%9F%92%BB).
+The goal of the project was to learn how to create a WebSocket server in C#, test it using Postman, and automate testing with GitHub Actions.
 
 ## Description
 
